@@ -1,0 +1,25 @@
+{
+  "name": "raclettejs",
+  "version": "1.0.0",
+  "description": "Share cookie between domains with ease!",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackstrapp/raclettejs.git"
+  },
+  "keywords": [
+    "cookie",
+    "multidomain",
+    "domain",
+    "localStorage"
+  ],
+  "author": "jackstrapp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jackstrapp/raclettejs/issues"
+  },
+  "homepage": "https://github.com/jackstrapp/raclettejs#readme"
+}
