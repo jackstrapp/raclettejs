@@ -1,1 +1,1 @@
-alert('test');
+console.log("raclettejs is loaded");
