@@ -1,13 +1,15 @@
-import "@babel/polyfill";
+import '@babel/polyfill';
 
 const sharePageUrl = "https://raclettejs.herokuapp.com/";
 
-
 export class RacletteStorage {
-    constructor() {
+
+
+    constructor(options = {}) {
+
         this.iframe = document.createElement("iframe");
-        this.iframe.setAttribute("src", sharePageUrl);
-        
+        this.iframe.setAttribute("src", options.sharePageUrl || sharePageUrl);
+
         this.container = document.createElement("div");
         this.container.style.display = "none";
         document.body.appendChild(this.container);
@@ -31,10 +33,18 @@ export class RacletteStorage {
 
     receiveMessagefunction(event) {
 
-        if (event.data === "loaded") this.resolveLoaded();
+        if (event.data === "loaded") {
+            this.resolveLoaded();
+            return;
+        }
 
         let key = event.data.key, value = event.data.value;
-        let indexFound = this.stack.map(value => value.key).indexOf(key);
+        let indexFound;
+        this.stack.forEach((item, index) => {
+            if ((item.action == event.data.action && event.data.key == "clear") ||
+                (item.action == event.data.action && item.key == event.data.key))
+                indexFound = index;
+        })
         let stacked = this.stack[indexFound];
         this.stack.splice(indexFound, 1);
         stacked.resolve(JSON.parse(value));
@@ -42,35 +52,21 @@ export class RacletteStorage {
 
     getItem(key) {
         return new Promise((function (resolve) {
-            this.stack.push({ key, resolve });
+            this.stack.push({ action: 'getItem', key, resolve });
             this.iframe.contentWindow.postMessage({ method: 'getItem', key }, '*');
         }).bind(this));
     }
     setItem(key, value) {
-        this.iframe.contentWindow.postMessage({ method: 'setItem', key, value: JSON.stringify(value) }, '*');
+        return new Promise((function (resolve) {
+            this.stack.push({ action: 'setItem', key, resolve });
+            this.iframe.contentWindow.postMessage({ method: 'setItem', key, value: JSON.stringify(value) }, '*');
+        }).bind(this));
     }
-
-
-
-
-
+    clear() {
+        return new Promise((function (resolve) {
+            this.stack.push({ action: 'clear', resolve });
+            this.iframe.contentWindow.postMessage({ method: 'clear' }, '*');
+        }).bind(this));
+    }
 }
-
-// window.racletteStorage = new RacletteStorage();
-// racletteStorage.loaded.then(() => {
-//     racletteStorage.getItem("list").then(list => {
-//         let div = document.getElementById("list");
-//         div.innerText = list.join(',');
-//     });
-//     window.addItem = function () {
-//         let value = document.getElementById("to_add").value;
-
-//         racletteStorage.getItem("list").then(list => {
-//             list = list || [];
-//             list.push(value);
-//             racletteStorage.setItem("list", list);
-//             this.setTimeout(() => window.location.reload(), 50);
-//         });
-//     }
-// });
 

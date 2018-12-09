@@ -20,13 +20,18 @@ bindEvent(window, 'message', function (e) {
 
 
 function handleMessage(data) {
-    debugger;
+    
     switch (data.method) {
         case 'getItem':
-            sendMessage({ key: data.key, value: localStorage.getItem(data.key) });
+            sendMessage({ action: "getItem", key: data.key, value: localStorage.getItem(data.key) });
             break;
         case 'setItem':
             localStorage.setItem(data.key, data.value);
+            sendMessage({ action: "setItem", key: data.key, value: null });
+            break;
+        case 'clear':
+            localStorage.clear();
+            sendMessage({ action: "clear", key: null, value: null });
             break;
         default:
             break;

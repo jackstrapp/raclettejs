@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "babel": "babel --presets es2015 src/index.js -o dist/main.babel.js",
-    "test": "karma start",
+    "test": "concurrently --kill-others \"karma start\" \"node startServer.js\"",
     "build": "webpack"
   },
   "repository": {
@@ -36,6 +36,8 @@
     "babel-polyfill": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "browserify": "^16.2.3",
+    "concurrently": "^4.1.0",
+    "express": "^4.16.4",
     "jasmine-core": "^3.3.0",
     "karma": "^3.1.3",
     "karma-babel-preprocessor": "^8.0.0-beta.0",
@@ -50,6 +52,7 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.0.0"
+    "@babel/polyfill": "^7.0.0",
+    "promise-polyfill": "^8.1.0"
   }
 }

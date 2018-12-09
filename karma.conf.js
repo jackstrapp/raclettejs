@@ -4,20 +4,12 @@ module.exports = function (config) {
         frameworks: ['jasmine'],
         browsers: ['Chrome'], //['PhantomJS'],
         files: [
-            'tests/simple-domain.UT.js'
+            //'tests/simple-domain.UT.js',
+            'tests/simple-prodDomain.UT.js'
         ],
         preprocessors: {
-            // add webpack as preprocessor
-            'tests/simple-domain.UT.js': ['webpack']
+            'tests/*': ['webpack'],
         },
         webpack: require("./webpack.config")
-        // {
-        //     module: {
-        //         rules: [
-        //             { test: /\.js$/, exclude: /node_modules/, loader: 'babel?presets[]=es2015' }
-        //         ]
-        //     },
-        //     watch: true
-        // }
     })
 }

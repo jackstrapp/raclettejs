@@ -1,17 +1,12 @@
 import { RacletteStorage } from "../src/index";
 
 describe("unit test getter and setter on only a single domain", function () {
-    let div = document.createElement('div');
-    div.id = "main";
-    document.body.appendChild(div);
-    let sut = new RacletteStorage();
+
+    let sut = new RacletteStorage({ sharePageUrl: "http://localhost:8080/" });
     beforeEach(function (done) {
-        console.log("before each start");
-        sut = new RacletteStorage();
         sut.loaded.then(_ => {
-            console.log("before each done");
+            done();
         });
-        console.log("before each end");
     });
 
     it("shouldn't fail to set a variable", function (done) {
@@ -25,6 +20,24 @@ describe("unit test getter and setter on only a single domain", function () {
             })
             .then(retrievedValue => {
                 expect(retrievedValue).toBe("my Value");
+                done();
+            });
+    });
+
+    it("test clear", (done) => {
+        sut.setItem("myKey", "my Value")
+            .then(_ => {
+                return sut.getItem("myKey")
+            })
+            .then(retrievedValue => {
+                expect(retrievedValue).toBe("my Value");
+                return sut.clear();
+            })
+            .then(() => {
+                return sut.getItem("myKey")
+            })
+            .then((retrievedValue) => {
+                expect(retrievedValue).toBe(null);
                 done();
             });
     });
