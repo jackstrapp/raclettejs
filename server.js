@@ -8,7 +8,6 @@ function bindEvent(element, eventName, eventHandler) {
 }
 // Send a message to the parent
 var sendMessage = function (msg) {
-    // Make sure you are sending a string, and to stringify JSON
     window.parent.postMessage(msg, '*');
 };
 var results = document.getElementById('results'),
@@ -18,9 +17,7 @@ bindEvent(window, 'message', function (e) {
     handleMessage(e.data);
 });
 
-
 function handleMessage(data) {
-    
     switch (data.method) {
         case 'getItem':
             sendMessage({ action: "getItem", key: data.key, value: localStorage.getItem(data.key) });
@@ -37,8 +34,5 @@ function handleMessage(data) {
             break;
     }
 }
-
 sendMessage("loaded", "*");
-
-console.log("raclettejs is loaded on server page");
 

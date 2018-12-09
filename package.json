@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "babel": "babel --presets es2015 src/index.js -o dist/main.babel.js",
-    "test": "concurrently --kill-others \"karma start\" \"node startServer.js\"",
+    "test": "node startServer.js",
     "build": "webpack"
   },
   "repository": {

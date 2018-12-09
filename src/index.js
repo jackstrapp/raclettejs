@@ -32,12 +32,10 @@ export class RacletteStorage {
     }
 
     receiveMessagefunction(event) {
-
         if (event.data === "loaded") {
             this.resolveLoaded();
             return;
         }
-
         let key = event.data.key, value = event.data.value;
         let indexFound;
         this.stack.forEach((item, index) => {
