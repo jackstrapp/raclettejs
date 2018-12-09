@@ -2,7 +2,7 @@
   "name": "raclettejs",
   "version": "1.0.0",
   "description": "Share cookie between domains with ease!",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "babel": "babel --presets es2015 src/index.js -o dist/main.babel.js",
     "test": "node startServer.js",
