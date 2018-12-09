@@ -1,8 +1,8 @@
-import { RacletteStorage } from "../src/index";
+import { Raclette } from "../index";
 
 describe("unit test getter and setter with production default domain", function () {
 
-    let sut = new RacletteStorage();
+    let sut = new Raclette();
 
     beforeEach(function (done) {
         sut.loaded.then(_ => {

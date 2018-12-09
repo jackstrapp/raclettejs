@@ -1,14 +1,13 @@
-import '@babel/polyfill';
+import 'promise-polyfill/src/polyfill';
 
-const sharePageUrl = "https://raclettejs.herokuapp.com/";
+const defaultSharePageUrl = "https://raclettejs.herokuapp.com/";
 
-export class RacletteStorage {
-
+export default class Raclette {
 
     constructor(options = {}) {
 
         this.iframe = document.createElement("iframe");
-        this.iframe.setAttribute("src", options.sharePageUrl || sharePageUrl);
+        this.iframe.setAttribute("src", options.sharePageUrl || defaultSharePageUrl);
 
         this.container = document.createElement("div");
         this.container.style.display = "none";
@@ -39,13 +38,15 @@ export class RacletteStorage {
         let key = event.data.key, value = event.data.value;
         let indexFound;
         this.stack.forEach((item, index) => {
-            if ((item.action == event.data.action && event.data.key == "clear") ||
+            if ((item.action == event.data.action && event.data.action == "clear") ||
                 (item.action == event.data.action && item.key == event.data.key))
                 indexFound = index;
         })
         let stacked = this.stack[indexFound];
-        this.stack.splice(indexFound, 1);
-        stacked.resolve(JSON.parse(value));
+        if (stacked) {
+            this.stack.splice(indexFound, 1);
+            stacked.resolve(JSON.parse(value));
+        }
     }
 
     getItem(key) {

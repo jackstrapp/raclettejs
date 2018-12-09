@@ -1,8 +1,8 @@
-import { RacletteStorage } from "../src/index";
+import Raclette from "../index";
 
 describe("unit test getter and setter on only a single domain", function () {
 
-    let sut = new RacletteStorage({ sharePageUrl: "http://localhost:8080/" });
+    let sut = new Raclette({ sharePageUrl: "http://localhost:8080/" });
     beforeEach(function (done) {
         sut.loaded.then(_ => {
             done();

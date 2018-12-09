@@ -6,8 +6,8 @@ var app = express();
 app.get('/', function (req, res) {
     res.sendFile(path.join(__dirname, 'tests', 'testServer', 'index.html'));
 });
-app.get('/server.js', function (req, res) {
-    res.sendFile(path.join(__dirname, 'server.js'));
+app.get('/server/index.js', function (req, res) {
+    res.sendFile(path.join(__dirname, 'server', 'index.js'));
 });
 
 let server = app.listen(8080);
