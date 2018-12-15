@@ -10,8 +10,6 @@ function bindEvent(element, eventName, eventHandler) {
 var sendMessage = function (msg) {
     window.parent.postMessage(msg, '*');
 };
-var results = document.getElementById('results'),
-    messageButton = document.getElementById('message_button');
 // Listen to messages from parent window
 bindEvent(window, 'message', function (e) {
     handleMessage(e.data);
