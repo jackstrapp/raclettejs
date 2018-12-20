@@ -1,20 +1,23 @@
 # raclettejs
 
-Simple cookie/locaStorage sharing library that enables you to share informations on the frontend between multiple domains.
+Because a raclette is basically made to be a shared meal, unlike a cookie...
 
+Simple cookie/locaStorage sharing library that enables you to share informations on the frontend between multiple domains.
 No backend implementation, no backend storing of your cookies. 
 
+This version currently only uses localStorage.
+
 #HOW TO USE IT
-```
+```js
 let storage = new Raclette(options);
 //every action is async, even the loading.
 
 storage.loaded.then(() => {
     //now i can use the storage
 
-    //get
-    storage.setItem("myKey", "myValue").then(...);
     //set
+    storage.setItem("myKey", "myValue").then(...);
+    //get
     storage.getItem("myKey").then(myValue => {
         //use the stored value
     })
@@ -23,8 +26,8 @@ storage.loaded.then(() => {
 });
 ```
 #options
-```
-options.sharePageUrl: the page that'll be used in the iframe.
+```js
+options.sharePageUrl: //the page that'll be used in the iframe.
 ```
 
 #USECASE
