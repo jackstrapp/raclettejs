@@ -1,3 +1,3 @@
-import Raclette from './src/index';
+var Raclette = require('./src/index');
 
-export default Raclette;
+module.exports = Raclette;

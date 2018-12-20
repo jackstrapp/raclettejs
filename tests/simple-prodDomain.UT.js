@@ -1,4 +1,4 @@
-import { Raclette } from "../index";
+var Raclette = require("../src/index");
 
 describe("unit test getter and setter with production default domain", function () {
 

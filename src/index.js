@@ -1,8 +1,8 @@
-import 'promise-polyfill/src/polyfill';
+require('promise-polyfill/src/polyfill');
 
 const defaultSharePageUrl = "https://raclettejs.herokuapp.com/";
 
-export default class Raclette {
+class Raclette {
 
     constructor(options = {}) {
 
@@ -69,3 +69,4 @@ export default class Raclette {
     }
 }
 
+module.exports = Raclette;
