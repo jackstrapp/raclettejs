@@ -1,4 +1,3 @@
-
 interface RacletteOptions {
     sharePageUrl: string;
 }
@@ -12,4 +11,4 @@ declare class Raclette {
     clear(): Promise<any>;
 }
 
-export default Raclette;
+export = Raclette
