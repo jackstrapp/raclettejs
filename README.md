@@ -9,12 +9,12 @@ This version currently only uses localStorage.
 
 #HOW TO USE IT
 ```js
+let Raclette = require('raclettejs');
+
 let storage = new Raclette(options);
+
 //every action is async, even the loading.
-
 storage.loaded.then(() => {
-    //now i can use the storage
-
     //set
     storage.setItem("myKey", "myValue").then(...);
     //get
