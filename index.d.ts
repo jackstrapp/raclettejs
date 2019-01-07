@@ -11,4 +11,4 @@ declare class Raclette {
     clear(): Promise<any>;
 }
 
-export = Raclette
+export default Raclette
