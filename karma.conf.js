@@ -3,7 +3,7 @@ module.exports = {
     frameworks: ['jasmine'],
     browsers: ['PhantomJS'],
     files: [
-        'tests/simple-domain.UT.js'
+        'tests/*.js'
     ],
     preprocessors: {
         'tests/*': ['webpack'],

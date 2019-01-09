@@ -7,14 +7,9 @@ function bindEvent(element, eventName, eventHandler) {
     }
 }
 // Send a message to the parent
-var sendMessage = function (msg) {
+function sendMessage(msg) {
     window.parent.postMessage(msg, '*');
-};
-// Listen to messages from parent window
-bindEvent(window, 'message', function (e) {
-    handleMessage(e.data);
-});
-
+}
 function handleMessage(data) {
     switch (data.method) {
         case 'getItem':
@@ -32,5 +27,10 @@ function handleMessage(data) {
             break;
     }
 }
+
+bindEvent(window, 'message', function (e) {
+    handleMessage(e.data);
+});
+
 sendMessage("loaded", "*");
 
