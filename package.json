@@ -1,6 +1,6 @@
 {
   "name": "raclettejs",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Share cookie between domains with ease!",
   "main": "dist/index.js",
   "typings": "index.d.ts",
