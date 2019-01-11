@@ -1,5 +1,5 @@
 
-require('string.prototype.startswith');
+
 
 var Raclette = require("../index");
 

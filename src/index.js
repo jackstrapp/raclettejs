@@ -1,4 +1,5 @@
 require('promise-polyfill/src/polyfill');
+require('string.prototype.startswith');
 
 const defaultOptions = {
     sharePageUrl: "https://raclettejs.herokuapp.com/"
